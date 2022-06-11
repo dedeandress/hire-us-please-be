@@ -21,4 +21,8 @@ func routePost(router *mux.Router) {
 	router.HandleFunc("/v1/auth/register", handlers.HandleRegister).Methods(http.MethodPost)
 	router.HandleFunc("/v1/me", handlers.Auth(handlers.HandleGetMe)).Methods(http.MethodGet)
 
+	//merchant
+	router.HandleFunc("/v1/merchants", handlers.HandleGetMerchantList).Methods(http.MethodGet)
+	router.HandleFunc("/v1/merchants/{merchantId}", handlers.HandleGetMerchantDetail).Methods(http.MethodGet)
+
 }

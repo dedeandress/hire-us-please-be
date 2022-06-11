@@ -67,8 +67,12 @@ func migrateDatabase() error {
 		return err
 	}
 	DB.Model(models.User{})
+	DB.Model(models.Merchant{})
+	DB.Model(models.Menu{})
 	DB.AutoMigrate(
 		models.User{},
+		models.Menu{},
+		models.Merchant{},
 	)
 
 	return nil
