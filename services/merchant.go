@@ -9,7 +9,24 @@ import (
 	"strconv"
 )
 
-func GetMerchantList(latitude, longitude, maxDistance string) params.Response {
+func GetMerchantList() params.Response {
+	merchantRepo := repositories.GetMerchantRepository()
+
+	merchants, err := merchantRepo.GetMerchantList()
+	if err != nil {
+		return createResponseError(
+			ResponseService{
+				RollbackDB: true,
+				Error:      err,
+				ResultCode: enums.BAD_REQUEST,
+			})
+	}
+
+	return createResponseSuccess(ResponseService{Payload: merchants})
+}
+
+
+func GetFilteredMerchantList(latitude, longitude, maxDistance string) params.Response {
 	var filteredMerchants []models.Merchant
 	merchantRepo := repositories.GetMerchantRepository()
 

@@ -20,7 +20,7 @@ func HandleGetMerchantList(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := services.GetMerchantList(latitude, longitude, maxDistance)
+	response := services.GetFilteredMerchantList(latitude, longitude, maxDistance)
 	ToJSON(w, response.HttpCode, response)
 }
 
