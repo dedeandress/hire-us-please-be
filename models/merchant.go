@@ -11,4 +11,5 @@ type Merchant struct {
 	Longitude decimal.Decimal `gorm:"type:decimal(10,6);" json:"longitude"`
 	Latitude  decimal.Decimal `gorm:"type:decimal(10,6);" json:"latitude"`
 	Category  string          `json:"category"`
+	PhoneNumber string `json:"phone_number"`
 }
