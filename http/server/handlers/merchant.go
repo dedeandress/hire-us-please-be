@@ -1,14 +1,26 @@
 package handlers
 
 import (
-	"github.com/gorilla/mux"
 	"go_sample_login_register/services"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func HandleGetMerchantList(w http.ResponseWriter, r *http.Request) {
+	latitude := r.URL.Query().Get("latitude")
+	longitude := r.URL.Query().Get("longitude")
+	maxDistance := r.URL.Query().Get("max_distance")
+	if maxDistance == "" {
+		maxDistance = "10"
+	}
 
-	response := services.GetMerchantList()
+	if latitude == "" || longitude == "" {
+		ToJSON(w, http.StatusBadRequest, badRequestResponse)
+		return
+	}
+
+	response := services.GetFilteredMerchantList(latitude, longitude, maxDistance)
 	ToJSON(w, response.HttpCode, response)
 }
 
