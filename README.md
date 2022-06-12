@@ -1,7 +1,7 @@
 # Go Sample Login Register
 
 ## Server
-Heroku : https://go-sample-login-register.herokuapp.com
+Heroku : https://hire-us-please-be-2022.herokuapp.com/
 
 ## Features
 
